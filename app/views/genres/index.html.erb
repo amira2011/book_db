@@ -1,0 +1,32 @@
+<div class="container mt-5">
+    <div class="row">
+        <h3>Genre</h3>
+        <div class="m-1">       
+        <%= link_to "New Genre" , new_genre_path ,  class: "btn btn-primary" %>
+        </div>
+        
+        <table class="table table-bordered table-hover text-nowrap     table-responsive m-2">
+        <thead>
+            <tr>
+                <th> Sr. No </th>
+                <th> Genre Name </th>
+                <th> Action </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @genres .each do |genre |  %>
+            <tr>
+                <td scope="row"><%=genre.id %></td>
+                <td><%=genre.genre_name %></td>
+                <td>
+                    <%= link_to "Show" , genre_path(genre.id), class: 'btn btn-primary ' %>
+                    <%= link_to "Edit", edit_genre_path(genre.id), class: 'btn btn-primary' %>
+                    <%= link_to "Delete", genre_path(genre.id) , method: :delete, data: { confirm: 'Are you Sure?'} ,class: 'btn btn-primary' %>
+                </td>
+            </tr>
+            <% end  %>   
+        </tbody>
+        </table>
+    </div>
+
+</div>

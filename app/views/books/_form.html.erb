@@ -1,0 +1,41 @@
+<div data-controller="books">
+<%= form_for @book do |form| %>
+ 
+    <div class="form-group mt-1">
+        <label">Title</label>
+        <%= form.text_field :title , class: 'form-control' , id: 'book_title'  %> 
+    </div>
+    <div class="form-group mt-1">
+        <label">Pages</label>
+        <%= form.text_field :total_pages , class: 'form-control' , id: 'book_total_pages', placeholder: 'Enter total pages' %> 
+    </div>
+    <div class="form-group mt-1">
+        <label">Ratings</label>
+        <%= form.number_field :rating , class: 'form-control' , id: 'book_rating', placeholder: 'Enter ratings' %> 
+    </div>
+    <div class="form-group mt-1">
+        <label">ISBN</label>
+        <%= form.text_field :isbn , class: 'form-control' , id: 'book_isbn', placeholder: 'Enter ISBN' %> 
+    </div>
+    <div class="form-group mt-1">
+        <label">Published Dated</label>
+        <%= form.text_field :published_date , class: 'form-control' , id: 'datepicker'  %> 
+    </div>
+
+    <div class="form-group mt-1">
+        <label">Publisher</label>
+        <%= form.text_field :publisher_id , class: 'form-control' , id: 'publisher_id'  %> 
+    </div>
+   
+    <div class="mt-1">
+        <%= form.submit "Update" , class: "btn btn-primary" %>
+    </div>
+
+
+
+
+
+  <% end %>
+</div>
+
+ 

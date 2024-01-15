@@ -1,0 +1,55 @@
+<div class="container mt-5" data-controller="books">
+    <div class="row">
+        <h3>Books</h3>
+        <div class="m-1">       
+        <%= link_to "New Book" , new_book_path ,  class: "btn btn-primary" %>
+        </div>
+        <table class="table table-bordered table-hover text-nowrap     table-responsive">
+        <thead>
+            <tr>
+                <th> Sr. No </th>
+                <th> Book Title </th>
+                <th> Total Pages </th>
+                <th> Ratings </th>
+                <th> ISBN </th>
+                <th> Genre </th>
+                <th> Published Date </th>
+                <th> Publisher </th>
+                <th> Author </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @books.each_with_index do |book, idx|  %>
+            <tr>
+                <td> <%= idx+1 %>  </td>
+                <td> <%= book.title %> </td>
+                <td> <%= book.total_pages %> </td>
+                <td> <%= book.rating %> </td>
+                <td> <%= book.isbn %> </td>
+                <td> 
+                    <% book.genres.each do |genre| %> 
+                        <%= genre.genre_name %>
+                    <% end %>
+                </td>
+                <td> <%= book.published_date %> </td>
+                <td> <%= Publisher.find(book.publisher_id).name %> </td>
+                <td> 
+                    <% book.authors.each do |author| %> 
+                        <%= " #{author.first_name} #{author.last_name}" %>
+                    <% end %>
+                </td>
+                <td>
+                <%= link_to "Show" , book_path(book.id), class: 'btn btn-primary ' %>
+                <%= link_to "Edit", edit_book_path(book.id), class: 'btn btn-primary' %>
+                <%= link_to "Delete", book_path(book.id), method: :delete, data: { confirm: 'Are you Sure?'} ,class: 'btn btn-primary' %>
+            </td>
+               
+            </tr>
+            <% end  %>   
+        </tbody>
+        </table>
+    </div>
+
+</div>
+
+ 
