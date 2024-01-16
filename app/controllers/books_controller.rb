@@ -37,7 +37,6 @@ class BooksController < ApplicationController
 
     def create
         puts params.inspect
-        @data = []     
         @book = Book.new(books_params)
         params[:book][:genre_ids].each do |genre|
             next if genre.empty?
@@ -52,11 +51,11 @@ class BooksController < ApplicationController
 
         if @book.save 
             flash[:success]="Successfully Created"
-            @data.push(@book.genres)
-            @data.push(@book.authors)
-            @data.push(@book)
+          #  @data.push(@book.genres)
+          #  @data.push(@book.authors)
+          #  @data.push(@book)
             #Utils.post_data(@book.as_json)
-            Utils.post_data(@data.as_json)
+          #  Utils.post_data(@data.as_json)
             redirect_to books_path
         else
             render 'new', status: :unprocessable_entity
@@ -68,7 +67,7 @@ class BooksController < ApplicationController
     
      
     def books_params
-        params.require(:book).permit(:title, :total_pages, :rating, :isbn , :published_date, :publisher  )
+        params.require(:book).permit(:title, :total_pages, :rating, :isbn , :published_date, :publisher_id  )
     end
 
 end

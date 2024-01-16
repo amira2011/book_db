@@ -1,41 +1,53 @@
-<div data-controller="books">
-<%= form_for @book do |form| %>
  
+<div data-controller="books">
+<h3> <%= @book.new_record? ? "Create Book" : "Edit Book" %> </h3>
+<%= form_with(model: @book)   do |form| %>
     <div class="form-group mt-1">
         <label">Title</label>
-        <%= form.text_field :title , class: 'form-control' , id: 'book_title'  %> 
+        <%= form.text_field :title , class: 'form-control' , id: 'book_title', placeholder: 'Enter Book Title' %> 
     </div>
+
     <div class="form-group mt-1">
         <label">Pages</label>
         <%= form.text_field :total_pages , class: 'form-control' , id: 'book_total_pages', placeholder: 'Enter total pages' %> 
     </div>
+
     <div class="form-group mt-1">
         <label">Ratings</label>
         <%= form.number_field :rating , class: 'form-control' , id: 'book_rating', placeholder: 'Enter ratings' %> 
     </div>
+    
     <div class="form-group mt-1">
         <label">ISBN</label>
         <%= form.text_field :isbn , class: 'form-control' , id: 'book_isbn', placeholder: 'Enter ISBN' %> 
     </div>
+
     <div class="form-group mt-1">
         <label">Published Dated</label>
         <%= form.text_field :published_date , class: 'form-control' , id: 'datepicker'  %> 
     </div>
 
-    <div class="form-group mt-1">
+   <div class="form-group mt-1">
         <label">Publisher</label>
-        <%= form.text_field :publisher_id , class: 'form-control' , id: 'publisher_id'  %> 
+         <%= collection_select(:book, :publisher_id, Publisher.all, :id, :name )%>
     </div>
-   
+    
+    <div class="form-group mt-1">
+        <label">Genre</label>
+         <%= collection_select(:book, :genre_ids, Genre.all, :id, :genre_name, {}, { :multiple => true } )%>
+    </div>
+
+    <div class="form-group mt-1">
+        <label">Authors</label>
+        <%= collection_select(:book, :author_ids, Author.all, :id, :name, {}, { :multiple => true  } )%>
+    </div>
+
+     
+    
     <div class="mt-1">
-        <%= form.submit "Update" , class: "btn btn-primary" %>
+        <%= form.submit( @book.new_record? ? "Create" : "Edit",  class: "btn btn-primary") %> 
+       
     </div>
-
-
-
-
-
   <% end %>
-</div>
 
- 
+</div>
