@@ -32,7 +32,11 @@
                     <% end %>
                 </td>
                 <td> <%= book.published_date %> </td>
+                <% if book.publisher_id %>
                 <td> <%= Publisher.find(book.publisher_id).name %> </td>
+                <% else %>
+                <td>   </td>
+                <% end %>
                 <td> 
                     <% book.authors.each do |author| %> 
                         <%= " #{author.first_name} #{author.last_name}" %>

@@ -23,13 +23,16 @@ class Utils
         end
     end
 
-    def self.post_data(book, author, genre)
+    def self.post_data(data)
 
-        data = {:book => book , :author => author, :genre => genre}
-        puts data.to_json 
+        
+        
         uri = URI('https://enhqlf4vs2wgl.x.pipedream.net/')
-        res = Net::HTTP.post_form(uri, data)
-        puts res.body  if res.is_a?(Net::HTTPSuccess)
+        req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
+        req.body = data.to_json
+        Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+            http.request(req)
+        end
 
     end
 
