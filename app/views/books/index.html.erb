@@ -4,7 +4,7 @@
         <div class="m-1">       
         <%= link_to "New Book" , new_book_path ,  class: "btn btn-primary" %>
         </div>
-        <table class="table table-bordered table-hover text-nowrap     table-responsive">
+        <table class="table table-bordered table-hover text-nowrap    align-middle text-center  table-responsive">
         <thead>
             <tr>
                 <th> Sr. No </th>
@@ -16,11 +16,12 @@
                 <th> Published Date </th>
                 <th> Publisher </th>
                 <th> Author </th>
+                  <th> Actions </th>
             </tr>
         </thead>
         <tbody>
             <% @books.each_with_index do |book, idx|  %>
-            <tr class="align-middle text-center">
+            <tr >
                 <td> <%= idx+1 %>  </td>
                 <td> <%= book.title %> </td>
                 <td> <%= book.total_pages %> </td>

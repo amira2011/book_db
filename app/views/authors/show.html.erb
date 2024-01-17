@@ -5,7 +5,7 @@
         <thead>
             <tr>
                 <th> Sr. No </th>
-                <th> Publisher Name </th>
+                <th> Author  Name </th>
                 <th> Action </th>
             </tr>
         </thead>
@@ -38,7 +38,7 @@
         <tbody>
             <% @books.each_with_index do |book, idx| %>
             <tr>
-            <td> <%= idx +1%> </td>
+            <td> <%= idx +1 %> </td>
              <td>   <%= link_to "#{book.title}" , book_path(book.id), class: 'btn btn-link ' %> </td>
             </tr>
             <% end %>

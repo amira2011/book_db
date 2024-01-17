@@ -1,5 +1,9 @@
  
-<div data-controller="books">
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+        <div data-controller="books">
 <h3> <%= @book.new_record? ? "Create Book" : "Edit Book" %> </h3>
 <%= form_with(model: @book)   do |form| %>
     <div class="form-group mt-1">
@@ -29,17 +33,17 @@
 
    <div class="form-group mt-1">
         <label">Publisher</label>
-         <%= collection_select(:book, :publisher_id, Publisher.all, :id, :name )%>
+         <%= collection_select(:book, :publisher_id, Publisher.all, :id, :name,{:prompt=>true}, {:class => 'form-control'} )%>
     </div>
     
     <div class="form-group mt-1">
         <label">Genre</label>
-         <%= collection_select(:book, :genre_ids, Genre.all, :id, :genre_name, {}, { :multiple => true } )%>
+         <%= collection_select(:book, :genre_ids, Genre.all, :id, :genre_name, {}, { :multiple => true , :class => 'form-control' } )%>
     </div>
 
     <div class="form-group mt-1">
         <label">Authors</label>
-        <%= collection_select(:book, :author_ids, Author.all, :id, :name, {}, { :multiple => true  } )%>
+        <%= collection_select(:book, :author_ids, Author.all, :id, :name, {}, { :multiple => true , :class => 'form-control' } )%>
     </div>
 
      
@@ -51,3 +55,13 @@
   <% end %>
 
 </div>
+
+		</div>
+		 
+	</div>
+</div>
+
+
+
+
+
