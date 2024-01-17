@@ -1,0 +1,17 @@
+<div class = "container mt-5">
+    <h3> <%= @genre.new_record? ? "Create Genre" : "Edit Genre" %> </h3>
+
+
+    <%= form_for @genre do |f| %>
+        <div class="form-group">
+          <%= f.label :first_name %>
+          <%= f.text_field :genre_name , class: 'form-control' , id: 'f_name', placeholder: 'Enter Genre Name' %>  
+        </div>
+        
+                 
+        <div class="p-2">
+        <%= f.submit( @genre.new_record? ? "Create" : "Edit",  class: "btn btn-primary") %> 
+        </div>
+        <% end %>
+
+</div>
