@@ -5,8 +5,12 @@ class GenresController < ApplicationController
     end
 
     def delete
-    
-    
+        
+    end
+
+    def show
+        @genre = Genre.find(params[:id])
+        @books = @genre.books
     end
     
     
@@ -15,7 +19,5 @@ class GenresController < ApplicationController
         if  @genre.destroy
             redirect_to genres_path
         end
-    
     end
-
 end

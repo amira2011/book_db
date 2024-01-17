@@ -7,6 +7,10 @@ class BooksController < ApplicationController
         @book = Book.new
     end
 
+    def show
+        @book= Book.find(params[:id])
+    end
+
     def edit
         @book= Book.find(params[:id])
     end
@@ -14,16 +18,14 @@ class BooksController < ApplicationController
     def update
         @book= Book.find(params[:id])
         if  @book.update(books_params)
-            redirect_to books_path
+        redirect_to books_path
         else 
-            render 'edit'
+        render 'edit'
         end
-    
     end
 
     def delete
-    
-    
+       
     end
     
     
@@ -32,7 +34,6 @@ class BooksController < ApplicationController
         if   @book.destroy
             redirect_to books_path
         end
-    
     end
 
     def create
@@ -48,14 +49,8 @@ class BooksController < ApplicationController
             obj1 = Author.find(author)
             @book.authors << obj1
         end
-
         if @book.save 
             flash[:success]="Successfully Created"
-          #  @data.push(@book.genres)
-          #  @data.push(@book.authors)
-          #  @data.push(@book)
-            #Utils.post_data(@book.as_json)
-          #  Utils.post_data(@data.as_json)
             redirect_to books_path
         else
             render 'new', status: :unprocessable_entity
@@ -64,12 +59,9 @@ class BooksController < ApplicationController
     end
 
     private
-    
-     
     def books_params
-        params.require(:book).permit(:title, :total_pages, :rating, :isbn , :published_date, :publisher_id  )
+        params.require(:book).permit(:title, :total_pages, :rating, :isbn , :published_date, :publisher_id)
     end
-
 end
 
 

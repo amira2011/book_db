@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <div class="row">
-        <h3>Publisher</h3>
+        <h3>Author</h3>
         <table class="table table-bordered table-hover text-nowrap     table-responsive">
         <thead>
             <tr>
@@ -12,12 +12,12 @@
         <tbody>
           
             <tr>
-                <td scope="row"><%= @publisher.id %></td>
-                <td> <%= @publisher.name %></td>
+                <td scope="row"><%= @author.id %></td>
+                <td> <%= @author.name %> </td>
                 <td>
-                    <%= link_to "Show" , publisher_path(@publisher.id), class: 'btn btn-primary ' %>
-                    <%= link_to "Edit", edit_publisher_path(@publisher.id), class: 'btn btn-primary' %>
-                    <%= link_to "Delete", publisher_path(@publisher.id), method: :delete, data: { confirm: 'Are you Sure?'} ,class: 'btn btn-primary' %>
+                    <%= link_to "Show" , author_path(@author.id), class: 'btn btn-primary ' %>
+                    <%= link_to "Edit", edit_author_path(@author.id), class: 'btn btn-primary' %>
+                    <%= link_to "Delete", author_path(@author.id), method: :delete, data: { confirm: 'Are you Sure?'} ,class: 'btn btn-primary' %>
                 </td>
             </tr>
             
@@ -26,7 +26,7 @@
 
     </div>
      <div class="row">
-        <h3>Books of Publisher</h3>
+        <h3>Books of Author</h3>
         <table class="table table-bordered table-hover text-nowrap     table-responsive">
         <thead>
             <tr>

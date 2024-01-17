@@ -5,12 +5,12 @@ class PublishersController < ApplicationController
 
     def new
         @publisher = Publisher.new
-
     end
 
 
     def show
         @publisher= Publisher.find(params[:id])
+        @books =   @publisher.books
     end
     
     
@@ -26,12 +26,10 @@ class PublishersController < ApplicationController
         else 
             render 'edit'
         end
-    
     end
     
     
     def delete
-    
     
     end
     
@@ -41,7 +39,6 @@ class PublishersController < ApplicationController
         if  @publisher.destroy
             redirect_to publishers_path
         end
-    
     end
 
 
@@ -60,5 +57,4 @@ class PublishersController < ApplicationController
     def publisher_params
         params.require(:publisher).permit(:name)
     end
-
 end

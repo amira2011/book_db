@@ -1,0 +1,61 @@
+<div class="container mt-5" data-controller="books">
+    <div class="row">
+        <h3>Books</h3>
+        <div class="m-1">       
+        <%= link_to "New Book" , new_book_path ,  class: "btn btn-primary" %>
+        </div>
+        <table class="table table-bordered table-hover text-nowrap     table-responsive">
+        <thead>
+            <tr>
+                <th> Sr. No </th>
+                <th> Book Title </th>
+                <th> Total Pages </th>
+                <th> Ratings </th>
+                <th> ISBN </th>
+                <th> Genre </th>
+                <th> Published Date </th>
+                <th> Publisher </th>
+                <th> Author </th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            <tr class="align-middle text-center">
+                <td> <%= 1 %>  </td>
+                <td> <%= @book.title %> </td>
+                <td> <%= @book.total_pages %> </td>
+                <td> <%= @book.rating %> </td>
+                <td> <%= @book.isbn %> </td>
+                <td> 
+                    <% @book.genres.each do |genre| %> 
+                        <%= link_to "#{genre.genre_name}" , genre_path(genre.id), class: 'btn btn-link ' %> 
+                    <% end %>
+
+                  
+                </td>
+                <td> <%= @book.published_date %> </td>
+                <% if @book.publisher_id %>
+                <td>  <%= link_to "#{@book.publisher.name}" , publisher_path(@book.publisher.id), class: 'btn btn-link ' %>  </td>
+                <% else %>
+                <td>   </td>
+                <% end %>
+                <td> 
+                    <% @book.authors.each do |author| %> 
+                        <%= link_to "#{author.name}" , author_path(author.id), class: 'btn btn-link ' %> 
+                    <% end %>
+                </td>
+                <td>
+                <%= link_to "Show" , book_path(@book.id), class: 'btn btn-primary ' %>
+                <%= link_to "Edit", edit_book_path(@book.id), class: 'btn btn-primary' %>
+                <%= link_to "Delete", book_path(@book.id), method: :delete, data: { confirm: 'Are you Sure?'} ,class: 'btn btn-primary' %>
+            </td>
+               
+            </tr>
+        
+        </tbody>
+        </table>
+    </div>
+
+</div>
+
+ 

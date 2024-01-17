@@ -1,23 +1,23 @@
 <div class="container mt-5">
     <div class="row">
-        <h3>Publisher</h3>
+        <h3>Genre</h3>
         <table class="table table-bordered table-hover text-nowrap     table-responsive">
         <thead>
             <tr>
                 <th> Sr. No </th>
-                <th> Publisher Name </th>
+                <th> Genre Name </th>
                 <th> Action </th>
             </tr>
         </thead>
         <tbody>
           
             <tr>
-                <td scope="row"><%= @publisher.id %></td>
-                <td> <%= @publisher.name %></td>
+                <td scope="row"><%= @genre.id %></td>
+                <td> <%= @genre.genre_name %> </td>
                 <td>
-                    <%= link_to "Show" , publisher_path(@publisher.id), class: 'btn btn-primary ' %>
-                    <%= link_to "Edit", edit_publisher_path(@publisher.id), class: 'btn btn-primary' %>
-                    <%= link_to "Delete", publisher_path(@publisher.id), method: :delete, data: { confirm: 'Are you Sure?'} ,class: 'btn btn-primary' %>
+                    <%= link_to "Show" , genre_path(@genre.id), class: 'btn btn-primary ' %>
+                    <%= link_to "Edit", edit_genre_path(@genre.id), class: 'btn btn-primary' %>
+                    <%= link_to "Delete", genre_path(@genre.id), method: :delete, data: { confirm: 'Are you Sure?'} ,class: 'btn btn-primary' %>
                 </td>
             </tr>
             
@@ -26,12 +26,12 @@
 
     </div>
      <div class="row">
-        <h3>Books of Publisher</h3>
+        <h3>Books of Genre</h3>
         <table class="table table-bordered table-hover text-nowrap     table-responsive">
         <thead>
             <tr>
                 <th> Sr. No </th>
-                <th> Boot Title </th>
+                <th> Book Title </th>
                   
             </tr>
         </thead>

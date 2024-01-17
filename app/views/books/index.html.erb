@@ -20,26 +20,26 @@
         </thead>
         <tbody>
             <% @books.each_with_index do |book, idx|  %>
-            <tr>
+            <tr class="align-middle text-center">
                 <td> <%= idx+1 %>  </td>
                 <td> <%= book.title %> </td>
                 <td> <%= book.total_pages %> </td>
                 <td> <%= book.rating %> </td>
                 <td> <%= book.isbn %> </td>
                 <td> 
-                    <% book.genres.each do |genre| %> 
-                        <%= genre.genre_name %>
+                     <% book.genres.each do |genre| %> 
+                        <%= link_to "#{genre.genre_name}" , genre_path(genre.id), class: 'btn btn-link ' %> 
                     <% end %>
                 </td>
                 <td> <%= book.published_date %> </td>
                 <% if book.publisher_id %>
-                <td> <%= Publisher.find(book.publisher_id).name %> </td>
+                <td> <%= link_to "#{book.publisher.name}" , publisher_path(book.publisher.id), class: 'btn btn-link ' %>  </td>
                 <% else %>
                 <td>   </td>
                 <% end %>
                 <td> 
                     <% book.authors.each do |author| %> 
-                        <%= " #{author.first_name} #{author.last_name}" %>
+                        <%= link_to "#{author.name}" , author_path(author.id), class: 'btn btn-link ' %> 
                     <% end %>
                 </td>
                 <td>
