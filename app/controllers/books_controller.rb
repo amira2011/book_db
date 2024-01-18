@@ -17,6 +17,19 @@ class BooksController < ApplicationController
 
     def update
         @book= Book.find(params[:id])
+        @book.genres.destroy_all
+        params[:book][:genre_ids].each do |genre|
+            next if genre.empty?
+            obj = Genre.find(genre)
+            @book.genres << obj
+        end
+        @book.authors.destroy_all
+        params[:book][:author_ids].each do |author|
+            next if author.empty?
+            obj1 = Author.find(author)
+            @book.authors << obj1
+        end
+       
         if  @book.update(books_params)
         redirect_to books_path
         else 

@@ -9,10 +9,15 @@ class Book < ApplicationRecord
 
     def save_json
         puts "We are storing data to JSON"
-        data = []
-        data.push(self.as_json)
-        data.push(self.authors.as_json)
-        data.push(self.genres.as_json)
+        data ={}
+        data["book"] = self.as_json
+        data["authors"] = self.authors.as_json
+        data["genres"] = self.genres.as_json
+        data["publisher"] = self.publisher.as_json
+        #data = []
+        #data.push(self.as_json)
+        #data.push(self.authors.as_json)
+        #data.push(self.genres.as_json)
         Utils.post_data(data)
     end
 end
