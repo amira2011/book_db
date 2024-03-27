@@ -1,5 +1,19 @@
 ActiveAdmin.register Book do
+  index do
+    column :title
+    column "Author", :authors
+    column "Publisher", :publisher
+    column :isbn
+    column :rating do |book|
+      div :class => "price" do 
+        number_to_currency book.rating       
+      end
+    end
+    column :genres
 
+    column :total_pages
+    actions
+  end
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -15,6 +29,4 @@ ActiveAdmin.register Book do
   #   permitted
   # end
   permit_params :title, :author_id, :published_date, :isbn, :rating, :total_pages, :publisher_id, :genre_ids => []
-
-  
 end
