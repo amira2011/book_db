@@ -10,23 +10,24 @@
 
 require 'faker'
  
-Author.destroy_all
-Publisher.destroy_all
-Genre.destroy_all
+# Author.destroy_all
+# Publisher.destroy_all
+# Genre.destroy_all
 
-10.times do 
-    author = Author.create(
-        first_name: Faker::Name.first_name, 
-        middle_name: Faker::Name.middle_name,
-        last_name: Faker::Name.last_name 
-    )
+# 10.times do 
+#     author = Author.create(
+#         first_name: Faker::Name.first_name, 
+#         middle_name: Faker::Name.middle_name,
+#         last_name: Faker::Name.last_name 
+#     )
 
-    publisher = Publisher.create(
-        name: Faker::Book.publisher
-    )
+#     publisher = Publisher.create(
+#         name: Faker::Book.publisher
+#     )
 
-    genre = Genre.create(
-        genre_name: Faker::Book.genre
-    )
-end
+#     genre = Genre.create(
+#         genre_name: Faker::Book.genre
+#     )
+# end
 
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
