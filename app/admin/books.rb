@@ -1,32 +1,22 @@
 ActiveAdmin.register Book do
-  index do
-    column :title
-    column "Author", :authors
-    column "Publisher", :publisher
-    column :isbn
-    column :rating do |book|
-      div :class => "price" do 
-        number_to_currency book.rating       
-      end
-    end
-    column :genres
+  filter :title
 
+  index download_links: [:csv] do
+    column :title
+    column "Authors", :authors do |book|
+      book.authors.map(&:first_name).join(", ")
+    end
+    column "Publisher", :publisher do |book|
+      book.publisher.name
+    end
+    column :isbn
+    column :rating
+    column "Genres", :genres do |book|
+      book.genres.map(&:genre_name).join(", ")
+    end
     column :total_pages
     actions
   end
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  # permit_params :title, :total_pages, :rating, :isbn, :published_date, :publisher_id
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:title, :total_pages, :rating, :isbn, :published_date, :publisher_id]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-  permit_params :title, :author_id, :published_date, :isbn, :rating, :total_pages, :publisher_id, :genre_ids => []
+
+  permit_params :title, :publisher_id, :published_date, :isbn, :rating, :total_pages, genre_ids: [], authors: []
 end
