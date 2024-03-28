@@ -1,6 +1,6 @@
 ActiveAdmin.register Author do
-   filter :middle_name_cont, as: :string
-
+  filter :middle_name
+  filter :first_name
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -15,5 +15,5 @@ ActiveAdmin.register Author do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+
 end
