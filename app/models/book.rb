@@ -6,10 +6,25 @@ class Book < ApplicationRecord
   has_many :genres, :through => :book_genres
   after_create :save_json
 
+  scope :active, -> { where(is_active: true) }
+  scope :inactive, -> { where(is_active: false) }
+
   scope :recent, ->(limit = 5) { order(created_at: :desc).limit(limit) }
 
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "id", "id_value", "isbn", "published_date", "publisher_id", "rating", "title", "total_pages", "updated_at"]
+    ["created_at", "id", "id_value", "isbn", "published_date", "publisher_id", "rating", "title", "total_pages", "updated_at", "is_active"]
+  end
+
+  def active?
+    is_active
+  end
+
+  def activate!
+    update_attribute(:is_active, true)
+  end
+
+  def deactivate!
+    update_attribute(:is_active, false)
   end
 
   def save_json
