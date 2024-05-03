@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  # MySQL service configuration
+  mysql_book:
+    image: mysql:5.7
+    container_name: mysql_book
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: book_app_development
+      MYSQL_USER: abid
+      MYSQL_PASSWORD: password
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  book_app:
+    build: .
+    container_name: book_app
+    restart: unless-stopped
+    ports:
+      - "3004:3000"
+    environment:
+      RAILS_ENV: development
+      DATABASE_HOST: mysql_book
+      DATABASE_USER: abid
+      DATABASE_PASSWORD: password
+      DATABASE_NAME: book_app_development
+    volumes:
+      - .:/app
+    depends_on:
+      - mysql_book
+
+volumes:
+  mysql_data:
+    driver: local

@@ -11,13 +11,13 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_03_29_052812) do
-  create_table "active_admin_comments", force: :cascade do |t|
+  create_table "active_admin_comments", charset: "latin1", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.string "author_type"
-    t.integer "author_id"
+    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_052812) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
   end
 
-  create_table "admin_users", force: :cascade do |t|
+  create_table "admin_users", charset: "latin1", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -37,7 +37,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_052812) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "authors", force: :cascade do |t|
+  create_table "authors", charset: "latin1", force: :cascade do |t|
     t.string "first_name"
     t.string "middle_name"
     t.string "last_name"
@@ -45,44 +45,44 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_052812) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "book_authors", force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "author_id"
+  create_table "book_authors", charset: "latin1", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_book_authors_on_author_id"
     t.index ["book_id"], name: "index_book_authors_on_book_id"
   end
 
-  create_table "book_genres", force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "genre_id"
+  create_table "book_genres", charset: "latin1", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_book_genres_on_book_id"
     t.index ["genre_id"], name: "index_book_genres_on_genre_id"
   end
 
-  create_table "books", force: :cascade do |t|
+  create_table "books", charset: "latin1", force: :cascade do |t|
     t.string "title"
     t.integer "total_pages"
     t.float "rating"
     t.string "isbn"
     t.date "published_date"
-    t.integer "publisher_id"
+    t.bigint "publisher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_active", default: true
     t.index ["publisher_id"], name: "index_books_on_publisher_id"
   end
 
-  create_table "genres", force: :cascade do |t|
+  create_table "genres", charset: "latin1", force: :cascade do |t|
     t.string "genre_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "publishers", force: :cascade do |t|
+  create_table "publishers", charset: "latin1", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
