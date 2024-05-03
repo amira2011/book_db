@@ -81,3 +81,5 @@ end
 
 gem 'activeadmin'
 gem 'devise'
+
+gem 'devise-two-factor'

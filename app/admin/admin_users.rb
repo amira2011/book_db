@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do
-  permit_params :email, :password, :password_confirmation
+  permit_params :email, :password, :password_confirmation, :otp_secret, :otp_required_for_login
 
   index do
     selectable_column
@@ -21,6 +21,8 @@ ActiveAdmin.register AdminUser do
       f.input :email
       f.input :password
       f.input :password_confirmation
+      f.input :otp_required_for_login, label: 'Enable Two-Factor Authentication'
+
     end
     f.actions
   end
