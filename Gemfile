@@ -27,15 +27,13 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-
-gem 'faker'
+gem "faker"
 
 gem "bootstrap"
 
-gem 'jquery-rails'
+gem "jquery-rails"
 
-gem 'jquery-ui-rails'
-
+gem "jquery-ui-rails"
 
 gem "sassc-rails"
 
@@ -79,7 +77,8 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'activeadmin'
-gem 'devise'
+gem "activeadmin"
+gem "devise"
 
-gem 'devise-two-factor'
+gem "devise-two-factor"
+gem "jwt"

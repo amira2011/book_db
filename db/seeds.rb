@@ -8,26 +8,26 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-require 'faker'
- 
-# Author.destroy_all
-# Publisher.destroy_all
-# Genre.destroy_all
+require "faker"
 
-# 10.times do 
-#     author = Author.create(
-#         first_name: Faker::Name.first_name, 
-#         middle_name: Faker::Name.middle_name,
-#         last_name: Faker::Name.last_name 
-#     )
+Author.destroy_all
+Publisher.destroy_all
+Genre.destroy_all
 
-#     publisher = Publisher.create(
-#         name: Faker::Book.publisher
-#     )
+10.times do
+  author = Author.create(
+    first_name: Faker::Name.first_name,
+    middle_name: Faker::Name.middle_name,
+    last_name: Faker::Name.last_name,
+  )
 
-#     genre = Genre.create(
-#         genre_name: Faker::Book.genre
-#     )
-# end
+  publisher = Publisher.create(
+    name: Faker::Book.publisher,
+  )
 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') 
+  genre = Genre.create(
+    genre_name: Faker::Book.genre,
+  )
+end
+
+# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
