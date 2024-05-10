@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :authors
     end
+    get "unauthorized", to: "api_base#unauthorized", as: :api_unauthorized
   end
 
   # Defines the root path route ("/")

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_03_164812) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_10_150923) do
   create_table "active_admin_comments", charset: "latin1", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -37,6 +37,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_164812) do
     t.string "otp_secret"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "api_tokens", charset: "latin1", force: :cascade do |t|
+    t.string "name"
+    t.string "token"
+    t.boolean "is_active", default: true
+    t.datetime "last_accessed_at"
+    t.text "accessed_by_ips"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "authors", charset: "latin1", force: :cascade do |t|
