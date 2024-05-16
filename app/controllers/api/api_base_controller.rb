@@ -21,8 +21,22 @@ module Api
     protected
 
     def verify_jwt_token
+      token = request.headers["Authorization"].split(" ").last if request.headers["Authorization"].present?
       authorized = false
-      #redirect_to api_api_unauthorized_path unless authorized
+      puts "token is in request #{token}"
+      puts "First Token is #{ApiToken.first.token}"
+
+      if token.present?
+        @api_token = ApiToken.find_by token: Digest::MD5.hexdigest(token)
+        if @api_token.present?
+          @api_token.last_accessed_at = Time.now
+          @api_token.accessed_by_ips << request.remote_ip unless @api_token.accessed_by_ips.include? request.remote_ip
+          @api_token.save
+
+          authorized = true if @api_token.active? && AuthToken.valid?(token)
+        end
+      end
+      redirect_to api_api_unauthorized_path unless authorized
     end
   end
 end
