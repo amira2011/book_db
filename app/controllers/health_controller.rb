@@ -38,7 +38,7 @@ class HealthController < ApplicationController
     puts response
     response.is_a?(Net::HTTPSuccess)
   rescue StandardError => e
-    Rails.logger.error("API service health check failed: #{e.message}")
+    Rails.logger.error("API service health check failed due to: #{e.message}")
     false
   end
 end
