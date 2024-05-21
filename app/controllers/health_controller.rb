@@ -8,9 +8,7 @@ class HealthController < ApplicationController
       database: database_healthy?,
       cache: cache_healthy?,
       api_service: api_service_healthy?,
-
     }
-
     status = health_status.values.all? ? :ok : :service_unavailable
     puts status
     render json: health_status, status: status
@@ -37,6 +35,7 @@ class HealthController < ApplicationController
   def api_service_healthy?
     uri = URI.parse("http://localhost:3004/api/v1/authors")
     response = Net::HTTP.get_response(uri)
+    puts response
     response.is_a?(Net::HTTPSuccess)
   rescue StandardError => e
     Rails.logger.error("API service health check failed: #{e.message}")
